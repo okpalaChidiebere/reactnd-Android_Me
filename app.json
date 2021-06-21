@@ -1,0 +1,12 @@
+{
+  "name": "reactnd-Android_Me",
+  "displayName": "reactnd-Android_Me",
+  "expo": {
+    "name": "reactnd-Android_Me",
+    "slug": "reactnd-Android_Me",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
