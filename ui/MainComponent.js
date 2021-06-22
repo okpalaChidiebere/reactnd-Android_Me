@@ -1,11 +1,23 @@
 import React from "react"
-import { View, StyleSheet }  from "react-native"
+import { View, StyleSheet, Platform, ToastAndroid }  from "react-native"
 import MasterListFragment from "./MasterListFragment"
 
 export default function MainComponent(){
+
+    //This callback function helps the MasterListFragment communicate back to the MainComponent
+    const onImageSelected = (position) => {
+        Platform.OS == 'android' && (ToastAndroid.showWithGravityAndOffset(
+            `Position clicked = ${position}`,
+            ToastAndroid.SHORT,
+            ToastAndroid.BOTTOM,
+            25,
+            50
+        ))
+    }
+
     return(
         <View>
-            <MasterListFragment />
+            <MasterListFragment onImageClick={onImageSelected}/>
         </View>
     )
 }
