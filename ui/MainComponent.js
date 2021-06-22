@@ -63,9 +63,9 @@ export default function MainComponent({ navigation }){
             {
                 /* Determine if you're creating a two-pane or single-pane display so that we can diplay our fragments correctly
                  for all screen sizes */
-                window.width > 600
-                ? <MasterDetail mTwoPane={window.width > 600} bodyPart={{...state}} onImageSelected={onImageSelected}/>
-                : <MasterListFragment onImageClick={onImageSelected} onNextButtonClick={nextButtonClick} mTwoPane={window.width > 600}/>
+                window.width >= 600
+                ? <MasterDetail mTwoPane={window.width >= 600} bodyPart={{...state}} onImageSelected={onImageSelected}/>
+                : <MasterListFragment onImageClick={onImageSelected} onNextButtonClick={nextButtonClick} mTwoPane={window.width >= 600}/>
             }
         </View>
     )

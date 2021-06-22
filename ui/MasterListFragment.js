@@ -1,5 +1,5 @@
 import React, { Fragment } from "react"
-import { View, StyleSheet, FlatList, Image, Pressable, TouchableHighlight, Text }  from "react-native"
+import { View, StyleSheet, FlatList, Pressable, TouchableHighlight, Text }  from "react-native"
 import { getAll } from "../utils/AndroidImageAssets"
 import styled from "styled-components/native"
 
@@ -17,12 +17,13 @@ export default function MasterListFragment({ onImageClick, onNextButtonClick, mT
                         </View>
                     </Pressable>
                 )}
-                //Setting the number of column
+                //Setting the number of column. Change the Flatlist to space out the images more on tablet.
                 numColumns={mTwoPane ? 2 : 3}
                 keyExtractor={(item, index) => index.toString()}
                 />
             </View>
             {
+                // Getting rid of the "Next" button that appears on phones for launching a separate activity
                 !mTwoPane 
                 && (
                     <View style={{ flex: 1, flexGrow: 1}}>
