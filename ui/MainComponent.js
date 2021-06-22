@@ -1,9 +1,12 @@
 import React, { useState } from "react"
-import { View, StyleSheet, Platform, ToastAndroid }  from "react-native"
+import { View, StyleSheet, Platform, ToastAndroid, useWindowDimensions }  from "react-native"
 import MasterListFragment from "./MasterListFragment"
 import { component_android_me } from "../utils/strings"
+import MasterDetail from "./sw600/MasterDetail"
 
 export default function MainComponent({ navigation }){
+
+    const window = useWindowDimensions()
 
     // Variables to store the values for the list index of the selected images
     // The default value will be index = 0
@@ -46,7 +49,7 @@ export default function MainComponent({ navigation }){
 
     const nextButtonClick = () => {
         const { headIndex, bodyIndex, legIndex} = state
-        
+
         // Put this information in route.params and attach it to react navigation that will launch an AndroidMeComponent
         //https://reactnavigation.org/docs/params
         navigation.navigate(component_android_me, {
@@ -57,7 +60,13 @@ export default function MainComponent({ navigation }){
     }
     return(
         <View style={styles.container}>
-            <MasterListFragment onImageClick={onImageSelected} onNextButtonClick={nextButtonClick}/>
+            {
+                /* Determine if you're creating a two-pane or single-pane display so that we can diplay our fragments correctly
+                 for all screen sizes */
+                window.width > 600
+                ? <MasterDetail mTwoPane={window.width > 600} bodyPart={{...state}} onImageSelected={onImageSelected}/>
+                : <MasterListFragment onImageClick={onImageSelected} onNextButtonClick={nextButtonClick} mTwoPane={window.width > 600}/>
+            }
         </View>
     )
 }
@@ -79,3 +88,5 @@ export function MainComponentOptions({ route, navigation }) {
         },
     }
 }
+
+//
