@@ -3,18 +3,21 @@ import { View, StyleSheet, ScrollView }  from "react-native"
 import BodyPartFragment from "./BodyPartFragment"
 import { getHeads, getBodies, getLegs } from "../utils/AndroidImageAssets"
 
-export default function AndroidMeComponent() {
+export default function AndroidMeComponent({ route, navigation }) {
+
+  const { headIndex, bodyIndex, legIndex } = route.params
+
     return (
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.frames}>
-            <BodyPartFragment imageIds={getHeads()} listIndex={1}/>
+            <BodyPartFragment imageIds={getHeads()} listIndex={headIndex}/>
           </View>
           <View style={styles.frames}>
-            <BodyPartFragment imageIds={getBodies()} listIndex={1}/>
+            <BodyPartFragment imageIds={getBodies()} listIndex={bodyIndex}/>
           </View>
           <View style={styles.frames}>
-            <BodyPartFragment imageIds={getLegs()} listIndex={1}/>
+            <BodyPartFragment imageIds={getLegs()} listIndex={legIndex}/>
           </View>
         </View>
       </ScrollView>
